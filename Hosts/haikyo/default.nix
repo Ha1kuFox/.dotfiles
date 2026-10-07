@@ -14,6 +14,5 @@
   programs.xppen.package = pkgs.callPackage ../../Packages/xppen4 {};
   environment.systemPackages = with pkgs; [
     pavucontrol
-    (pkgs.callPackage ../../Packages/flclashx {})
   ];
 }

@@ -37,6 +37,26 @@
         "type": "github"
       }
     },
+    "concat": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1791316207,
+        "narHash": "sha256-lAXsczzd60e7U5nfTvpWsLzLlc+4L8xiAizI+4wB4Ow=",
+        "owner": "jub0t",
+        "repo": "concat",
+        "rev": "f1f2f3eab310a3220b2fcdb47531d3d3b85d6713",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jub0t",
+        "repo": "concat",
+        "type": "github"
+      }
+    },
     "direnv-nvim": {
       "flake": false,
       "locked": {
@@ -243,6 +263,7 @@
       "inputs": {
         "cendre": "cendre",
         "chaotic": "chaotic",
+        "concat": "concat",
         "direnv-nvim": "direnv-nvim",
         "lsp-lens-nvim": "lsp-lens-nvim",
         "nix-cachyos-kernel": "nix-cachyos-kernel",

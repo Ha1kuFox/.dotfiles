@@ -8,6 +8,5 @@
   environment.systemPackages = with pkgs; [
     ayugram-desktop
     yandex-music
-    (pkgs.callPackage ../../pkgs/flclashx {})
   ];
 }

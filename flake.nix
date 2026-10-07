@@ -15,6 +15,10 @@
     cendre.flake = false;
     lsp-lens-nvim.url = "github:VidocqH/lsp-lens.nvim";
     lsp-lens-nvim.flake = false;
+    concat = {
+      url = "github:jub0t/concat";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: let
@@ -25,6 +29,7 @@
   in {
     packages = forAllSystems (pkgs: {
       cspenguin-wine = pkgs.callPackage ./Packages/cspenguin/wine.nix {};
+      concat = inputs.concat.packages.${pkgs.stdenv.hostPlatform.system}.default;
     });
 
     nixosConfigurations = {
@@ -34,6 +39,7 @@
           ./Hosts/hasuri
           ./Modules/cosmic.nix
           ./Modules/system.nix
+          ./Modules/concat.nix
           ./Modules/v2raya.nix
           ./Modules/neovim.nix
           ./Modules/terminal.nix
@@ -53,7 +59,9 @@
           ./Modules/cspenguin.nix
           ./Modules/hypr.nix
           ./Modules/system.nix
-	  ./Modules/vscode.nix
+          ./Modules/concat.nix
+          ./Modules/happ.nix
+ 	  ./Modules/vscode.nix
           ./Modules/terminal.nix
           ./Modules/gaming.nix
           ./Modules/firefox.nix
@@ -68,6 +76,8 @@
         modules = [
           ./Hosts/setsu
           ./Modules/system.nix
+          ./Modules/concat.nix
+          ./Modules/happ.nix
           ./Modules/neovim.nix
           ./Modules/cosmic.nix
           ./Modules/terminal.nix
