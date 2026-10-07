@@ -24,27 +24,33 @@
   services.lact.enable = true;
   nixpkgs.config.rocmSupport = true;
 
-  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "sd_mod"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-amd"];
-  boot.extraModulePackages = [];
+  boot = {
+    initrd = {
+      availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "sd_mod"];
+      kernelModules = [];
+    };
+    kernelModules = ["kvm-amd"];
+    extraModulePackages = [];
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/5ee84978-9abf-41c1-bad5-8fbe32de35fd";
-    fsType = "ext4";
+    kernelPackages = pkgs.linuxPackages_latest;
   };
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/D796-229F";
-    fsType = "vfat";
-    options = ["fmask=0077" "dmask=0077"];
-  };
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-uuid/5ee84978-9abf-41c1-bad5-8fbe32de35fd";
+      fsType = "ext4";
+    };
 
-  fileSystems."/home/user/GamesDisk" = {
-    device = "/dev/disk/by-uuid/f7ec0ea0-ee9e-4e98-972f-dfc1d700de2d";
-    fsType = "ext4";
+    "/boot" = {
+      device = "/dev/disk/by-uuid/D796-229F";
+      fsType = "vfat";
+      options = ["fmask=0077" "dmask=0077"];
+    };
+
+    "/home/user/GamesDisk" = {
+      device = "/dev/disk/by-uuid/f7ec0ea0-ee9e-4e98-972f-dfc1d700de2d";
+      fsType = "ext4";
+    };
   };
 
   swapDevices = [];

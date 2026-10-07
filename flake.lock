@@ -1,21 +1,5 @@
 {
   "nodes": {
-    "cendre": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1790200848,
-        "narHash": "sha256-+enyAdaAzuirX00m8o/0sOEfGtV4Rm96F7syyBPL9s0=",
-        "owner": "Aejkatappaja",
-        "repo": "cendre",
-        "rev": "5c9d924a4c75c130a1c812ee3e240d78a92d2c3a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Aejkatappaja",
-        "repo": "cendre",
-        "type": "github"
-      }
-    },
     "chaotic": {
       "inputs": {
         "flake-schemas": "flake-schemas",
@@ -54,22 +38,6 @@
       "original": {
         "owner": "jub0t",
         "repo": "concat",
-        "type": "github"
-      }
-    },
-    "direnv-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1782680771,
-        "narHash": "sha256-b5PpmkYWaDGLNcu+36tRR5ycATHYBjs9WrV8/jfmooQ=",
-        "owner": "NotAShelf",
-        "repo": "direnv.nvim",
-        "rev": "9258f9f10c4c729d8296fce0e3ecb12543daad06",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NotAShelf",
-        "repo": "direnv.nvim",
         "type": "github"
       }
     },
@@ -139,22 +107,6 @@
       "original": {
         "owner": "nix-community",
         "repo": "home-manager",
-        "type": "github"
-      }
-    },
-    "lsp-lens-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1701948425,
-        "narHash": "sha256-zj/Gn/40jnDNh05OFc23LNNuFn1PnIAUDfPquEWpAlk=",
-        "owner": "VidocqH",
-        "repo": "lsp-lens.nvim",
-        "rev": "48bb1a7e271424c15f3d588d54adc9b7c319d977",
-        "type": "github"
-      },
-      "original": {
-        "owner": "VidocqH",
-        "repo": "lsp-lens.nvim",
         "type": "github"
       }
     },
@@ -261,11 +213,8 @@
     },
     "root": {
       "inputs": {
-        "cendre": "cendre",
         "chaotic": "chaotic",
         "concat": "concat",
-        "direnv-nvim": "direnv-nvim",
-        "lsp-lens-nvim": "lsp-lens-nvim",
         "nix-cachyos-kernel": "nix-cachyos-kernel",
         "nix-wrapper-modules": "nix-wrapper-modules",
         "nixpkgs": "nixpkgs_3"

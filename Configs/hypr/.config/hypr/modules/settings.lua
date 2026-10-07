@@ -4,10 +4,10 @@ local colors = require("modules.colors")
 -- General
 hl.config({
     general = {
-        gaps_in  = 2,
-        gaps_out = 5,
+        gaps_in  = 0,
+        gaps_out = 0,
 
-        border_size = 2,
+        border_size = 1,
 
         col = {
             active_border   = colors.accent,
@@ -20,8 +20,8 @@ hl.config({
     },
 
     decoration = {
-        rounding       = 16,
-        rounding_power = 3,
+        rounding       = 0,
+        rounding_power = 0,
 
         active_opacity   = 1.0,
         inactive_opacity = 1.0,

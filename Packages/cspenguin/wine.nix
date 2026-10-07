@@ -137,7 +137,6 @@ with pkgs; let
   ];
 
   libDir = p: lib.getOutput "lib" p + "/lib";
-  lib64SearchPath = lib.makeLibraryPath lib64;
   lib32SearchPath = lib.makeLibraryPath lib32;
 
   # extra dirs appended to the RPATH of every file auto-patchelf touches so

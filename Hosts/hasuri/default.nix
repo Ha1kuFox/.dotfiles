@@ -1,6 +1,6 @@
 {
   imports = [
     ./hardware.nix
+    ./modules.nix
   ];
-  networking.hostName = "hasuri";
 }
