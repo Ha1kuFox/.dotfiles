@@ -1,5 +1,7 @@
 local v = require("modules.vars")
 
+local ipc = "noctalia msg "
+
 hl.bind(v.mainMod .. " + T", hl.dsp.exec_cmd(v.terminal))
 hl.bind(v.mainMod .. " + C", hl.dsp.window.close())
 -- hl.bind(v.mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
@@ -8,7 +10,7 @@ hl.bind(v.mainMod .. " + E", hl.dsp.exec_cmd(v.fileManager))
 hl.bind(v.mainMod .. " + B", hl.dsp.exec_cmd(v.browser))
 hl.bind(v.mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 -- hl.bind(v.mainMod .. " + SPACE", hl.dsp.exec_cmd("/home/user/projects/mofu/target/debug/mofu --toggle-launcher"))
-hl.bind(v.mainMod .. " + SPACE", hl.dsp.exec_cmd("wofi --show drun"))
+hl.bind(v.mainMod .. " + SPACE", hl.dsp.exec_cmd(ipc .. "panel-toggle launcher"))
 hl.bind(v.mainMod .. " + O", hl.dsp.exec_cmd("/home/user/projects/mofu/target/debug/mofu --toggle-power"))
 hl.bind(v.mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("/home/user/projects/mofu/target/debug/mofu --toggle-settings"))
 hl.bind(v.mainMod .. " + F3", hl.dsp.exec_cmd("/home/user/projects/mofu/target/debug/mofu --debug-ui"))

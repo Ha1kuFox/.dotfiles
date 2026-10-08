@@ -13,5 +13,6 @@ _: {
     "recorder"
     "godot"
     "screenshot"
+    "noctalia"
   ];
 }
