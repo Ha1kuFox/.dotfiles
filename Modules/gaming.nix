@@ -14,14 +14,17 @@
     chaotic.nyx.cache.enable = false;
 
     # Steam
-    programs.steam = {
-      enable = true;
-      remotePlay.openFirewall = true;
-      dedicatedServer.openFirewall = true;
-      extraCompatPackages = with pkgs; [
-        proton-cachyos_x86_64_v3
-        # proton-cachyos_x86_64
-      ];
+    programs = {
+      gamescope = {
+        enable = true;
+        capSysNice = true;
+      };
+      steam = {
+        enable = true;
+        gamescopeSession.enable = true;
+        remotePlay.openFirewall = true;
+        dedicatedServer.openFirewall = true;
+      };
     };
 
     # Fix gamepads

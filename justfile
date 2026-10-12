@@ -4,6 +4,9 @@ default:
 switch:
     sudo nixos-rebuild switch --flake . --diff
 
+clean:
+    sudo nix-collect-garbage -d
+
 format:
     find . -name "*.qml" -exec qmlformat -i {} \;
     alejandra .

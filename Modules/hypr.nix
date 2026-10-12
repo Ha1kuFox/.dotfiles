@@ -10,18 +10,6 @@
         enable = true;
       };
     };
-    services = {
-      greetd = {
-        enable = true;
-        settings = rec {
-          default_session = {
-            command = "start-hyprland";
-            user = "user";
-          };
-          initial_session = default_session;
-        };
-      };
-    };
 
     xdg.portal = {
       enable = true;

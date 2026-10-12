@@ -27,6 +27,11 @@
     # BOOT
     boot = {
       consoleLogLevel = 0;
+      kernelParams = [
+        "quiet"
+        "splash"
+        "console=/dev/null"
+      ];
       loader = {
         timeout = 0;
         systemd-boot = {
@@ -37,6 +42,7 @@
         };
         efi.canTouchEfiVariables = true;
       };
+      plymouth.enable = true;
     };
 
     # SOUND

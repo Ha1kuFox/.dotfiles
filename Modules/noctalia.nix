@@ -2,6 +2,7 @@
   config,
   lib,
   inputs,
+  pkgs,
   ...
 }: {
   imports = [
@@ -19,6 +20,19 @@
       enable = true;
       systemd.enable = true;
       recommendedServices.enable = true;
+    };
+
+    services.displayManager.noctalia-greeter = {
+      enable = true;
+      passwordlessSyncUsers = ["user"];
+      settings = {
+        cursor.size = 24;
+        keyboard.layout = "us";
+      };
+      cursorTheme = {
+        package = pkgs.bibata-cursors;
+        name = "Bibata-Modern-Ice";
+      };
     };
   };
 }
