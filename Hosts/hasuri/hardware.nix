@@ -12,6 +12,8 @@
     initrd.availableKernelModules = ["xhci_pci" "ehci_pci" "ahci" "sd_mod" "sr_mod" "sdhci_pci"];
     kernelModules = ["amdgpu"];
     initrd.kernelModules = ["amdgpu"];
+    blacklistedKernelModules = ["i915"];
+    kernelParams = ["modprobe.blacklist=i915" "radeon.si_support=0" "amdgpu.si_support=1"];
     extraModprobeConfig = "
         options amdgpu runpm=0
       ";
