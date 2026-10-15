@@ -28,6 +28,7 @@
     packages.${system} = {
       cspenguin-wine = pkgs.callPackage ./Packages/cspenguin/wine.nix {};
       concat = inputs.concat.packages.${system}.default;
+      photocraft = pkgs.callPackage ./Packages/photocraft {};
     };
 
     devShells.${system}.default = pkgs.mkShell {

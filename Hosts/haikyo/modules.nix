@@ -14,5 +14,6 @@ _: {
     "godot"
     "screenshot"
     "noctalia"
+    "photocraft"
   ];
 }
