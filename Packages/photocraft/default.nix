@@ -1,15 +1,19 @@
-# PhotoCraft: desktop app + headless CLI, built from the local Ha1kuFox/photocraft
-# checkout (personal fork with Noctalia theme, Paint Bucket extras, Studio
+# PhotoCraft: desktop app + headless CLI, built from the Ha1kuFox/photocraft
+# fork (personal fork with Noctalia theme, Paint Bucket extras, Studio
 # options-bar parity). Adapted from makemake-kbo's upstream PR #621
 # (nix/package.nix), minus the release packaging: no craft-fonts embedding
 # (no checkout here; system CJK fonts are used), dev-build provenance.
 #
-# Rebuild after pulling the checkout: the source is filtered (no target/,
-# .git/, corpus/), so only real source edits trigger a rebuild.
+# The fork rev below is what the system builds: push to origin/main, then bump
+# `rev` + `hash` here (`nix run nixpkgs#nix-prefetch-git -- --url
+# https://github.com/Ha1kuFox/photocraft --rev <sha>`). For a dirty-checkout
+# build without pushing: `photocraft.override { srcDir = /path/to/checkout; }`
+# (needs `nixos-rebuild ... --impure` / `nix build --impure`).
 {
   lib,
   stdenv,
   rustPlatform,
+  fetchFromGitHub,
   pkg-config,
   makeBinaryWrapper,
   desktop-file-utils,
@@ -26,25 +30,34 @@
   libxkbcommon,
   vulkan-loader,
   wayland,
-  # Local checkout to build. Override with e.g.
-  # `photocraft.override { srcDir = /other/checkout; }`.
-  srcDir ? /home/user/Projects/photocraft,
+  # Local checkout to build instead of the pinned fork rev below, or null
+  # for the pin. A path needs --impure (dirty tree is copied as-is).
+  srcDir ? null,
 }: let
   appId = "ai.storyteller.photocraft";
-  src = lib.cleanSourceWith {
-    src = srcDir;
-    filter = name: _type: let
-      base = baseNameOf (toString name);
-    in
-      !(builtins.elem base [
-        ".git"
-        "target"
-        "corpus"
-        "result"
-        "log"
-        "plan"
-      ]);
-  };
+  src =
+    if srcDir != null then
+      lib.cleanSourceWith {
+        src = srcDir;
+        filter = name: _type: let
+          base = baseNameOf (toString name);
+        in
+          !(builtins.elem base [
+            ".git"
+            "target"
+            "corpus"
+            "result"
+            "log"
+            "plan"
+          ]);
+      }
+    else
+      fetchFromGitHub {
+        owner = "Ha1kuFox";
+        repo = "photocraft";
+        rev = "87c32f98e41123313a30a2900e43a9292c93e973";
+        hash = "sha256-adSl4gvtwjJwkbDnAMohL71oq/GvuvJ6ONsb+0/Kfvc=";
+      };
   version = (lib.importTOML (src + "/Cargo.toml")).workspace.package.version;
   runtimeLibraries = [
     dbus # libdbus-1.so.3: rfd's file dialogs talk to xdg-desktop-portal over D-Bus
