@@ -8,12 +8,16 @@
     programs = {
       hyprland = {
         enable = true;
+        withUWSM = true;
       };
     };
 
     xdg.portal = {
       enable = true;
-      extraPortals = [pkgs.xdg-desktop-portal-hyprland];
+      extraPortals = [
+        pkgs.xdg-desktop-portal-hyprland
+        pkgs.xdg-desktop-portal-gtk
+      ];
       configPackages = [pkgs.hyprland];
     };
 
@@ -24,6 +28,8 @@
 
       # Чтобы работал выбор файлов в некоторых прогах
       gsettings-desktop-schemas
+      # Фолбэк для rfd, если портал недоступен
+      zenity
     ];
   };
 }

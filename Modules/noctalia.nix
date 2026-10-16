@@ -22,6 +22,8 @@
       recommendedServices.enable = true;
     };
 
+    environment.systemPackages = [pkgs.hyprpicker];
+
     services.displayManager.noctalia-greeter = {
       enable = true;
       passwordlessSyncUsers = ["user"];
