@@ -2,7 +2,7 @@ default:
     just --help
 
 switch:
-    sudo nixos-rebuild switch --flake . --diff --impure
+    sudo nixos-rebuild switch --flake . --diff
 
 clean:
     sudo nix-collect-garbage -d
