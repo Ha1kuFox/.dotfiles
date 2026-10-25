@@ -22,7 +22,7 @@
       recommendedServices.enable = true;
     };
 
-    environment.systemPackages = [pkgs.hyprpicker];
+    environment.systemPackages = [pkgs.hyprpicker pkgs.gpu-screen-recorder];
 
     services.displayManager.noctalia-greeter = {
       enable = true;
