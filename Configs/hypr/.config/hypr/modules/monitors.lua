@@ -6,14 +6,14 @@ if hostname == "haikyo" then
     hl.monitor({
         output    = "HDMI-A-1",
         mode      = "highres",
-        position  = "auto",
+        position  = "auto-center-left",
         scale     = "1",
         transform = 3
     })
     hl.monitor({
         output   = "DP-2",
         mode     = "highres",
-        position = "auto",
+        position = "auto-center-right",
         scale    = "1",
     })
 else
