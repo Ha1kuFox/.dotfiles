@@ -12,14 +12,23 @@
       };
     };
 
-    xdg.portal = {
-      enable = true;
-      xdgOpenUsePortal = true;
-      extraPortals = [
-        pkgs.xdg-desktop-portal-hyprland
-        pkgs.xdg-desktop-portal-gtk
-      ];
-      configPackages = [pkgs.hyprland];
+    xdg = {
+      mime = {
+        enable = true;
+        defaultApplications = {
+          "x-scheme-handler/http" = "firefox.desktop";
+          "x-scheme-handler/https" = "firefox.desktop";
+        };
+      };
+      portal = {
+        enable = true;
+        xdgOpenUsePortal = true;
+        extraPortals = [
+          pkgs.xdg-desktop-portal-hyprland
+          pkgs.xdg-desktop-portal-gtk
+        ];
+        configPackages = [pkgs.hyprland];
+      };
     };
 
     environment.systemPackages = with pkgs; [
