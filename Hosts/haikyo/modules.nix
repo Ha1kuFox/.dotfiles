@@ -13,6 +13,7 @@ _: {
     "recorder"
     "godot"
     "screenshot"
+    "keyring"
     "noctalia"
     "photocraft"
   ];
