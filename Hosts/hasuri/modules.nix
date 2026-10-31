@@ -12,5 +12,6 @@ _: {
     "godot"
     "screenshot"
     "noctalia"
+    "keyring"
   ];
 }
