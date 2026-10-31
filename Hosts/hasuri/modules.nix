@@ -1,6 +1,7 @@
 _: {
   mods = [
     "hypr"
+    "vscode"
     "system"
     "happ"
     "terminal"

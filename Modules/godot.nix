@@ -8,7 +8,6 @@
     environment.systemPackages = with pkgs; [
       godot
       blockbench
-      github-desktop
     ];
   };
 }
