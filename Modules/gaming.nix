@@ -8,7 +8,10 @@
   # Per nixpkgs guidance conditional imports depending on `config` are not
   # allowed — import unconditionally and gate the effect with mkIf instead.
   # All current hosts enable "gaming", so behavior is unchanged.
-  imports = [inputs.chaotic.nixosModules.default];
+  imports = [
+    inputs.chaotic.nixosModules.default
+    inputs.nix-flatpak.nixosModules.nix-flatpak
+  ];
 
   config = lib.mkIf (lib.elem "gaming" config.mods) {
     chaotic.nyx.cache.enable = false;
@@ -24,6 +27,19 @@
         gamescopeSession.enable = true;
         remotePlay.openFirewall = true;
         dedicatedServer.openFirewall = true;
+      };
+    };
+
+    services.flatpak = {
+      enable = true;
+      packages = [
+        # Roblox client
+        "org.vinegarhq.Sober"
+      ];
+      # Auto-update so roblox isnt outdated
+      update.auto = {
+        enable = true;
+        onCalendar = "weekly";
       };
     };
 

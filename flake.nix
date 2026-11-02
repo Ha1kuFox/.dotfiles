@@ -15,6 +15,7 @@
       url = "github:noctalia-dev/noctalia/cachix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.8.0";
   };
 
   outputs = inputs: let
