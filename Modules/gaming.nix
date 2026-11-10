@@ -71,6 +71,7 @@
         additionalPrograms = [ffmpeg];
       })
       r2modman
+      ffmpeg
     ];
   };
 }
