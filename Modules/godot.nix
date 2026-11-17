@@ -9,6 +9,7 @@
       godot
       blockbench
       material-maker
+      anytype
     ];
   };
 }
