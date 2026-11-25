@@ -43,18 +43,29 @@
       cat > "$AI_ROOT/extra_model_paths.yaml" <<'YAML'
       ai_generation:
         base_path: /home/user/AI
-        checkpoints: models/checkpoints
-        loras: models/loras
-        vae: models/vae
-        embeddings: models/embeddings
-        controlnet: models/controlnet
-        clip: models/clip
-        clip_vision: models/clip_vision
-        upscale_models: models/upscale_models
-        hypernetworks: models/hypernetworks
-        diffusion_models: models/diffusion_models
-        text_encoders: models/text_encoders
-        style_models: models/style_models
+        checkpoints: models/checkpoints/
+        configs: models/configs/
+        loras: models/loras/
+        vae: models/vae/
+        text_encoders: |
+          models/text_encoders/
+          models/clip/
+        diffusion_models: |
+          models/unet/
+          models/diffusion_models/
+        clip_vision: models/clip_vision/
+        style_models: models/style_models/
+        embeddings: models/embeddings/
+        diffusers: models/diffusers/
+        vae_approx: models/vae_approx/
+        controlnet: |
+          models/controlnet/
+          models/t2i_adapter/
+        gligen: models/gligen/
+        upscale_models: models/upscale_models/
+        latent_upscale_models: models/latent_upscale_models/
+        hypernetworks: models/hypernetworks/
+        datasets: datasets/
       YAML
 
       exec "$VENV/bin/python" "$APP/main.py" \
@@ -124,16 +135,23 @@ in {
       "L+ /opt/rocm/hip - - - - ${pkgs.rocmPackages.clr}"
       "d /home/user/AI 0755 user users - -"
       "d /home/user/AI/models 0755 user users - -"
-      "d /home/user/AI/models/checkpoints 0755 user users - -"\n      "d /home/user/AI/models/configs 0755 user users - -"
+      "d /home/user/AI/models/checkpoints 0755 user users - -"
+      "d /home/user/AI/models/configs 0755 user users - -"
       "d /home/user/AI/models/loras 0755 user users - -"
-      "d /home/user/AI/models/vae 0755 user users - -"\n      "d /home/user/AI/models/vae_approx 0755 user users - -"
+      "d /home/user/AI/models/vae 0755 user users - -"
+      "d /home/user/AI/models/vae_approx 0755 user users - -"
       "d /home/user/AI/models/embeddings 0755 user users - -"
-      "d /home/user/AI/models/controlnet 0755 user users - -"\n      "d /home/user/AI/models/t2i_adapter 0755 user users - -"
+      "d /home/user/AI/models/controlnet 0755 user users - -"
+      "d /home/user/AI/models/t2i_adapter 0755 user users - -"
       "d /home/user/AI/models/clip 0755 user users - -"
       "d /home/user/AI/models/clip_vision 0755 user users - -"
-      "d /home/user/AI/models/upscale_models 0755 user users - -"\n      "d /home/user/AI/models/latent_upscale_models 0755 user users - -"
+      "d /home/user/AI/models/upscale_models 0755 user users - -"
+      "d /home/user/AI/models/latent_upscale_models 0755 user users - -"
       "d /home/user/AI/models/hypernetworks 0755 user users - -"
-      "d /home/user/AI/models/diffusion_models 0755 user users - -"\n      "d /home/user/AI/models/unet 0755 user users - -"\n      "d /home/user/AI/models/diffusers 0755 user users - -"\n      "d /home/user/AI/models/gligen 0755 user users - -"
+      "d /home/user/AI/models/diffusion_models 0755 user users - -"
+      "d /home/user/AI/models/unet 0755 user users - -"
+      "d /home/user/AI/models/diffusers 0755 user users - -"
+      "d /home/user/AI/models/gligen 0755 user users - -"
       "d /home/user/AI/models/text_encoders 0755 user users - -"
       "d /home/user/AI/models/style_models 0755 user users - -"
       "d /home/user/AI/workflows 0755 user users - -"
