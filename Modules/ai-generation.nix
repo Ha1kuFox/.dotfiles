@@ -13,7 +13,7 @@
       VENV="$AI_ROOT/.venv"
       INSTALLED="$AI_ROOT/.comfyui-dependencies-installed"
 
-      mkdir -p "$AI_ROOT"/models/{checkpoints,loras,vae,embeddings,controlnet,clip,clip_vision,upscale_models,hypernetworks,diffusion_models,text_encoders,style_models}
+      mkdir -p "$AI_ROOT"/models/{checkpoints,configs,loras,vae,vae_approx,embeddings,controlnet,t2i_adapter,clip,clip_vision,upscale_models,latent_upscale_models,hypernetworks,diffusion_models,unet,text_encoders,style_models,diffusers,gligen}
       mkdir -p "$AI_ROOT"/{workflows,datasets/characters,input,output,user}
 
       if [ ! -d "$APP/.git" ]; then
@@ -124,16 +124,16 @@ in {
       "L+ /opt/rocm/hip - - - - ${pkgs.rocmPackages.clr}"
       "d /home/user/AI 0755 user users - -"
       "d /home/user/AI/models 0755 user users - -"
-      "d /home/user/AI/models/checkpoints 0755 user users - -"
+      "d /home/user/AI/models/checkpoints 0755 user users - -"\n      "d /home/user/AI/models/configs 0755 user users - -"
       "d /home/user/AI/models/loras 0755 user users - -"
-      "d /home/user/AI/models/vae 0755 user users - -"
+      "d /home/user/AI/models/vae 0755 user users - -"\n      "d /home/user/AI/models/vae_approx 0755 user users - -"
       "d /home/user/AI/models/embeddings 0755 user users - -"
-      "d /home/user/AI/models/controlnet 0755 user users - -"
+      "d /home/user/AI/models/controlnet 0755 user users - -"\n      "d /home/user/AI/models/t2i_adapter 0755 user users - -"
       "d /home/user/AI/models/clip 0755 user users - -"
       "d /home/user/AI/models/clip_vision 0755 user users - -"
-      "d /home/user/AI/models/upscale_models 0755 user users - -"
+      "d /home/user/AI/models/upscale_models 0755 user users - -"\n      "d /home/user/AI/models/latent_upscale_models 0755 user users - -"
       "d /home/user/AI/models/hypernetworks 0755 user users - -"
-      "d /home/user/AI/models/diffusion_models 0755 user users - -"
+      "d /home/user/AI/models/diffusion_models 0755 user users - -"\n      "d /home/user/AI/models/unet 0755 user users - -"\n      "d /home/user/AI/models/diffusers 0755 user users - -"\n      "d /home/user/AI/models/gligen 0755 user users - -"
       "d /home/user/AI/models/text_encoders 0755 user users - -"
       "d /home/user/AI/models/style_models 0755 user users - -"
       "d /home/user/AI/workflows 0755 user users - -"
