@@ -9,6 +9,7 @@
     runtimeInputs = [pkgs.git pkgs.python313 pkgs.coreutils];
     text = ''
       AI_ROOT="$HOME/AI"
+      export LD_LIBRARY_PATH="${pkgs.stdenv.cc.cc.lib}/lib"
       APP="$AI_ROOT/ComfyUI"
       VENV="$AI_ROOT/.venv"
       INSTALLED="$AI_ROOT/.comfyui-dependencies-installed"
@@ -109,6 +110,7 @@
     runtimeInputs = [pkgs.coreutils];
     text = ''
       PYTHON="$HOME/AI/.venv/bin/python"
+      export LD_LIBRARY_PATH="${pkgs.stdenv.cc.cc.lib}/lib"
       if [ ! -x "$PYTHON" ]; then
         echo "ComfyUI environment is not initialized yet." >&2
         exit 1
