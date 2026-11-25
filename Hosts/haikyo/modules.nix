@@ -16,5 +16,6 @@ _: {
     "keyring"
     "noctalia"
     "photocraft"
+    "ai-generation"
   ];
 }
