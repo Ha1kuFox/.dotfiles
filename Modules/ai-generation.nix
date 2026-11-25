@@ -6,7 +6,7 @@
 }: let
   comfyuiStart = pkgs.writeShellApplication {
     name = "comfyui-start";
-    runtimeInputs = [pkgs.git pkgs.python313 pkgs.coreutils];
+    runtimeInputs = [pkgs.git pkgs.python313 pkgs.coreutils pkgs.uv];
     text = ''
       AI_ROOT="$HOME/AI"
       export LD_LIBRARY_PATH="${lib.makeLibraryPath [ pkgs.stdenv.cc.cc.lib pkgs.zstd ]}"
@@ -78,6 +78,14 @@
         --input-directory "$AI_ROOT/input" \
         --output-directory "$AI_ROOT/output" \
         --user-directory "$AI_ROOT/user"
+    '';
+  };
+
+  comfyuiCommand = pkgs.writeShellApplication {
+    name = "comfyui";
+    runtimeInputs = [pkgs.systemd];
+    text = ''
+      exec systemctl --user start comfyui
     '';
   };
 
@@ -165,6 +173,7 @@ in {
     ];
 
     environment.systemPackages = [
+      comfyuiCommand
       comfyuiUpdate
       comfyuiCheck
     ];
