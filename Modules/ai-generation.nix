@@ -12,8 +12,12 @@
     ];
     nixpkgs.config.rocmSupport = true;
 
+    # Allow the interactive user to access ROCm device nodes.
+    users.users.user.extraGroups = ["video"];
+
     # ROCm applications commonly expect HIP at /opt/rocm/hip.
     systemd.tmpfiles.rules = [
+      "d /opt/rocm - - - - -"
       "L+ /opt/rocm/hip - - - - ${pkgs.rocmPackages.clr}"
     ];
   };
