@@ -15,7 +15,7 @@
       VENV="$AI_ROOT/.venv"
       INSTALLED="$AI_ROOT/.comfyui-dependencies-installed"
 
-      mkdir -p "$AI_ROOT"/models/{checkpoints,configs,loras,vae,vae_approx,embeddings,controlnet,t2i_adapter,clip,clip_vision,upscale_models,latent_upscale_models,hypernetworks,diffusion_models,unet,text_encoders,style_models,diffusers,gligen}
+      mkdir -p "$AI_ROOT"/models/{checkpoints,configs,loras,vae,vae_approx,embeddings,controlnet,t2i_adapter,clip,clip_vision,ipadapter,upscale_models,latent_upscale_models,hypernetworks,diffusion_models,unet,text_encoders,style_models,diffusers,gligen}
       mkdir -p "$AI_ROOT"/{workflows,datasets/characters,input,output,user}
 
       if [ ! -d "$APP/.git" ]; then
@@ -75,6 +75,7 @@
           models/unet/
           models/diffusion_models/
         clip_vision: models/clip_vision/
+        ipadapter: models/ipadapter/
         style_models: models/style_models/
         embeddings: models/embeddings/
         diffusers: models/diffusers/
@@ -175,6 +176,7 @@ in {
       "d /home/user/AI/models/t2i_adapter 0755 user users - -"
       "d /home/user/AI/models/clip 0755 user users - -"
       "d /home/user/AI/models/clip_vision 0755 user users - -"
+      "d /home/user/AI/models/ipadapter 0755 user users - -"
       "d /home/user/AI/models/upscale_models 0755 user users - -"
       "d /home/user/AI/models/latent_upscale_models 0755 user users - -"
       "d /home/user/AI/models/hypernetworks 0755 user users - -"
