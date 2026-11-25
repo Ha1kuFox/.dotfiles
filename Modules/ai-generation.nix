@@ -10,6 +10,7 @@
     text = ''
       AI_ROOT="$HOME/AI"
       export LD_LIBRARY_PATH="${lib.makeLibraryPath [ pkgs.stdenv.cc.cc.lib pkgs.zstd ]}"
+      export PATH="${pkgs.uv}/bin:$PATH"
       APP="$AI_ROOT/ComfyUI"
       VENV="$AI_ROOT/.venv"
       INSTALLED="$AI_ROOT/.comfyui-dependencies-installed"
