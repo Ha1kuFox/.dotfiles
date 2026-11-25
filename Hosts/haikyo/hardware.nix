@@ -16,13 +16,10 @@
     };
     amdgpu = {
       initrd.enable = true;
-      opencl.enable = true;
       overdrive.enable = true;
     };
-    graphics.extraPackages = [pkgs.rocmPackages.clr.icd];
   };
   services.lact.enable = true;
-  nixpkgs.config.rocmSupport = true;
 
   boot = {
     initrd = {
