@@ -25,7 +25,7 @@
       fi
 
       if [ ! -x "$VENV/bin/python" ]; then
-        \${pkgs.python313}/bin/python -m venv "$VENV"
+        ${pkgs.python313}/bin/python -m venv "$VENV"
       fi
 
       if [ ! -f "$INSTALLED" ]; then
@@ -121,7 +121,7 @@ in {
     # ROCm applications commonly expect HIP at /opt/rocm/hip.
     systemd.tmpfiles.rules = [
       "d /opt/rocm - - - - -"
-      "L+ /opt/rocm/hip - - - - \${pkgs.rocmPackages.clr}"
+      "L+ /opt/rocm/hip - - - - ${pkgs.rocmPackages.clr}"
       "d /home/user/AI 0755 user users - -"
       "d /home/user/AI/models 0755 user users - -"
       "d /home/user/AI/models/checkpoints 0755 user users - -"
@@ -156,7 +156,7 @@ in {
       wantedBy = ["default.target"];
       serviceConfig = {
         Type = "simple";
-        ExecStart = "\${comfyuiStart}/bin/comfyui-start";
+        ExecStart = "${comfyuiStart}/bin/comfyui-start";
         Restart = "on-failure";
         RestartSec = "15s";
         TimeoutStartSec = "infinity";
