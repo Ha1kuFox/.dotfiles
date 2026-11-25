@@ -42,6 +42,25 @@
         touch "$INSTALLED"
       fi
 
+      # Force ComfyUI-Manager to use this venv's working pip instead of standalone uv.
+      MANAGER_CONFIG="$AI_ROOT/user/__manager/config.ini"
+      mkdir -p "$(dirname "$MANAGER_CONFIG")"
+      "$VENV/bin/python" - "$MANAGER_CONFIG" <<'PY'
+      import configparser
+      import os
+      import sys
+
+      path = sys.argv[1]
+      config = configparser.ConfigParser()
+      if os.path.exists(path):
+          config.read(path)
+      if not config.has_section("default"):
+          config.add_section("default")
+      config.set("default", "use_uv", "False")
+      with open(path, "w", encoding="utf-8") as config_file:
+          config.write(config_file)
+      PY
+
       cat > "$AI_ROOT/extra_model_paths.yaml" <<'YAML'
       ai_generation:
         base_path: /home/user/AI
