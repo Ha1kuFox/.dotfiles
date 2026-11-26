@@ -36,7 +36,8 @@
 }: let
   appId = "ai.storyteller.photocraft";
   src =
-    if srcDir != null then
+    if srcDir != null
+    then
       lib.cleanSourceWith {
         src = srcDir;
         filter = name: _type: let
@@ -80,10 +81,25 @@ in
       # `nix run nixpkgs#nix-prefetch-git -- --url <url> --rev <rev>`
       # when the workspace Cargo.toml moves a rev.
       outputHashes = {
-        "craft-print-0.1.0" = "sha256-uXP0zITi8i1JDUyc451FmZ0Pl1ZK4D0rlTJQmGFVm0I=";
-        "craft-ui-0.1.0" = "sha256-VhLeT7VLdZAIz6gR9PdFI34IJxHsGF8NE0uzFCN2vIU=";
-        "craft-winprint-gdi-0.1.0" = "sha256-n1pcNaBGrnvSsE5MedeSRczJOMhfmF/LGFiiDTrG1GM=";
-        "winprint-0.2.1" = "sha256-wnz/VbqQ3j/x1PEq6Elxu/oSjVqdONfqQmZ31NsTIIc=";
+        "craft-ai-agents-0.1.0" = "sha256-d/tJzTJVVDsVtBvpILMF3+eEDGTt9BEp71b2bB8cn7Q=";
+        "craft-print-0.1.0" = "0zkq83638lys4g4kraznfhi77rwvnc7vs6x7ywfqjgcpvfyfqssg";
+        "craft-ui-0.1.0" = "0zkq83638lys4g4kraznfhi77rwvnc7vs6x7ywfqjgcpvfyfqssg";
+        "craft-winprint-gdi-0.1.0" = "sha256-HGJ4iAWJxBVXc9bSitSSOma2nqn35KgWs2ATHUyjX1E=";
+        "winprint-0.2.1" = "sha256-32t8uIEiUHUzUYu4JowjFG8/CMvvFCdRgxd6mDBv0W4=";
+        "ecolor-0.37.0" = "sha256-Kmgvc5FI1Of6576Xvdyp29LySN9JIZFrDXrCuuLxQrY=";
+        "vectorcraft-geom-0.18.0" = "sha256-bX2yTI2K4Xk4YNoNcS2WxyjJyp09iVtEJlqV37fVytM=";
+        "winit-0.30.13" = "sha256-+67bk7cqhM5VHqROL3PeghmhKJvlPIxhU73ay45vaxw=";
+        "eframe-0.37.0" = "sha256-Kmgvc5FI1Of6576Xvdyp29LySN9JIZFrDXrCuuLxQrY=";
+        "egui-0.37.0" = "sha256-Kmgvc5FI1Of6576Xvdyp29LySN9JIZFrDXrCuuLxQrY=";
+        "egui-wgpu-0.37.0" = "sha256-Kmgvc5FI1Of6576Xvdyp29LySN9JIZFrDXrCuuLxQrY=";
+        "egui-winit-0.37.0" = "sha256-Kmgvc5FI1Of6576Xvdyp29LySN9JIZFrDXrCuuLxQrY=";
+        "egui_extras-0.37.0" = "sha256-Kmgvc5FI1Of6576Xvdyp29LySN9JIZFrDXrCuuLxQrY=";
+        "egui_glow-0.37.0" = "sha256-Kmgvc5FI1Of6576Xvdyp29LySN9JIZFrDXrCuuLxQrY=";
+        "egui_kittest-0.37.0" = "sha256-Kmgvc5FI1Of6576Xvdyp29LySN9JIZFrDXrCuuLxQrY=";
+        "emath-0.37.0" = "sha256-Kmgvc5FI1Of6576Xvdyp29LySN9JIZFrDXrCuuLxQrY=";
+        "epaint-0.37.0" = "sha256-Kmgvc5FI1Of6576Xvdyp29LySN9JIZFrDXrCuuLxQrY=";
+        "epaint_default_fonts-0.37.0" = "sha256-Kmgvc5FI1Of6576Xvdyp29LySN9JIZFrDXrCuuLxQrY=";
+        "vectorcraft-pathops-0.18.0" = "sha256-bX2yTI2K4Xk4YNoNcS2WxyjJyp09iVtEJlqV37fVytM=";
       };
     };
 
