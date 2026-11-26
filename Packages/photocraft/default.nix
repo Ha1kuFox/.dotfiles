@@ -48,7 +48,6 @@
             "corpus"
             "result"
             "log"
-            "plan"
           ]);
       }
     else
