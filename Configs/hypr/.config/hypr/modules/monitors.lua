@@ -1,5 +1,6 @@
 local handle = io.popen("hostname")
 local hostname = handle:read("*l"):lower()
+local v = false
 handle:close()
 
 if hostname == "haikyo" then
@@ -7,8 +8,8 @@ if hostname == "haikyo" then
         output    = "HDMI-A-1",
         mode      = "highres",
         position  = "auto-center-left",
-        scale     = "1",
-        transform = 3
+        scale     = "1.5",
+        transform = (v == true and 3 or 0)
     })
     hl.monitor({
         output   = "DP-2",
