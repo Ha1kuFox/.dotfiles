@@ -55,10 +55,10 @@
       fetchFromGitHub {
         owner = "Ha1kuFox";
         repo = "photocraft";
-        # main: all fork fixes, upstream history and native Wayland tablet-v2
-        # pen input, merged from PR #2.
-        rev = "0c7539e5d3bfe16e33d4da22a705581fdf8ee7e2";
-        hash = "sha256-KP+6AfdOwxNw3I48KR/hcITjb0r1I/91W+WvaEn55jE=";
+        # main: all fork fixes, upstream history, native Wayland tablet-v2
+        # pen input, Noctalia theme persistence and hold-to-correct strokes.
+        rev = "ab45c375a1d8148a182e526d1627328addf5f2ca";
+        hash = "sha256-KK9j2T0BGIaCmoqepZwsVK5EFJh7Whs9RUCt2gT5Xak=";
       };
   version = (lib.importTOML (src + "/Cargo.toml")).workspace.package.version;
   runtimeLibraries = [
@@ -84,8 +84,8 @@ in
       # when the workspace Cargo.toml moves a rev.
       outputHashes = {
         "craft-ai-agents-0.1.0" = "sha256-d/tJzTJVVDsVtBvpILMF3+eEDGTt9BEp71b2bB8cn7Q=";
-        "craft-print-0.1.0" = "0zkq83638lys4g4kraznfhi77rwvnc7vs6x7ywfqjgcpvfyfqssg";
-        "craft-ui-0.1.0" = "0zkq83638lys4g4kraznfhi77rwvnc7vs6x7ywfqjgcpvfyfqssg";
+        "craft-print-0.1.0" = "sha256-2RrVvi2M//NindwPTZ/kikdrWPc09t6tmYFg1F2UriY=";
+        "craft-ui-0.1.0" = "sha256-2RrVvi2M//NindwPTZ/kikdrWPc09t6tmYFg1F2UriY=";
         "craft-winprint-gdi-0.1.0" = "sha256-HGJ4iAWJxBVXc9bSitSSOma2nqn35KgWs2ATHUyjX1E=";
         "winprint-0.2.1" = "sha256-32t8uIEiUHUzUYu4JowjFG8/CMvvFCdRgxd6mDBv0W4=";
         "ecolor-0.37.0" = "sha256-Kmgvc5FI1Of6576Xvdyp29LySN9JIZFrDXrCuuLxQrY=";
