@@ -4,7 +4,7 @@
 # (nix/package.nix), minus the release packaging: no craft-fonts embedding
 # (no checkout here; system CJK fonts are used), dev-build provenance.
 #
-# The fork rev below is what the system builds: push to origin/main, then bump
+# The fork rev below is what the system builds: push the branch, then bump
 # `rev` + `hash` here (`nix run nixpkgs#nix-prefetch-git -- --url
 # https://github.com/Ha1kuFox/photocraft --rev <sha>`). For a dirty-checkout
 # build without pushing: `photocraft.override { srcDir = /path/to/checkout; }`
@@ -55,8 +55,10 @@
       fetchFromGitHub {
         owner = "Ha1kuFox";
         repo = "photocraft";
-        rev = "87c32f98e41123313a30a2900e43a9292c93e973";
-        hash = "sha256-adSl4gvtwjJwkbDnAMohL71oq/GvuvJ6ONsb+0/Kfvc=";
+        # main: all fork fixes, upstream history and native Wayland tablet-v2
+        # pen input, merged from PR #2.
+        rev = "0c7539e5d3bfe16e33d4da22a705581fdf8ee7e2";
+        hash = "sha256-KP+6AfdOwxNw3I48KR/hcITjb0r1I/91W+WvaEn55jE=";
       };
   version = (lib.importTOML (src + "/Cargo.toml")).workspace.package.version;
   runtimeLibraries = [
@@ -103,7 +105,9 @@ in
       };
     };
 
-    nativeBuildInputs = [pkg-config] ++ lib.optionals stdenv.hostPlatform.isLinux [makeBinaryWrapper];
+    # `lib.getBin dbus` (not the dev output stdenv would pick): the app's portal
+    # tests start their own `dbus-daemon` from PATH.
+    nativeBuildInputs = [pkg-config (lib.getBin dbus)] ++ lib.optionals stdenv.hostPlatform.isLinux [makeBinaryWrapper];
 
     buildInputs = lib.optionals stdenv.hostPlatform.isLinux runtimeLibraries;
 
@@ -118,6 +122,41 @@ in
     # HEIC/HEIF import (heic-rs, pure Rust, no system libs): not default upstream,
     # but every official build enables it.
     buildFeatures = ["heif"];
+
+    # Cargo tolerates [patch.crates-io] entries no crate in the selected graph
+    # uses, but the Nix vendor dir only holds the used packages: the offline
+    # build then fails with "patch location ... does not contain packages
+    # matching egui_demo_lib". These six are [[patch.unused]] in the workspace
+    # lock; dropping them lets Cargo prune those records offline.
+    postPatch = ''
+      for pkg in krilla hayro-cmap hayro-postscript \
+        egui_system_font_provider egui_demo_lib egui_inspection; do
+        sed -i "/^$pkg = { git = /d" Cargo.toml
+      done
+    '';
+
+    # The portal tests start `dbus-daemon --session`, which reads the
+    # compiled-in /etc/dbus-1/session.conf: the build sandbox has no /etc, so
+    # the daemon exits and the test sees an empty (invalid) address. Put a
+    # wrapper first in PATH that uses the package's own session.conf instead;
+    # `--session` is dropped because it would request the missing file again.
+    preCheck = ''
+      mkdir -p dbus-session-bin
+      cat > dbus-session-bin/dbus-daemon <<'INNER'
+      #!@shell@
+      args=""
+      for a in "$@"; do
+        [ "$a" = "--session" ] || args="$args $a"
+      done
+      exec @dbus@ --config-file @conf@ $args
+      INNER
+      chmod +x dbus-session-bin/dbus-daemon
+      substituteInPlace dbus-session-bin/dbus-daemon \
+        --subst-var-by shell ${stdenv.shell} \
+        --subst-var-by dbus ${lib.getExe' dbus "dbus-daemon"} \
+        --subst-var-by conf ${dbus}/share/dbus-1/session.conf
+      export PATH="$PWD/dbus-session-bin:$PATH"
+    '';
 
     # NOTE: the cargo vendor step needs crates.io; if the sandbox has no DNS
     # that step fails and the build cannot proceed. The vendor dir is cached in
